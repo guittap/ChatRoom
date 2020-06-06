@@ -2,11 +2,20 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { signin } from "../helpers/auth";
 
+//Material UI core
 import Typography from "@material-ui/core/Typography";
+import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
+import Button from "@material-ui/core/Button";
 
-class SignUp extends Component {
+//Materials UI Styles
+import withStyles from "@material-ui/core/styles/withStyles";
+
+const styles = (theme) => ({
+  ...theme.spread,
+});
+
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -35,45 +44,67 @@ class SignUp extends Component {
   }
 
   render() {
+    const { classes } = this.props;
+
     return (
-      <Grid>
-        <Paper>
+      <Grid container spacing={10} className={classes.form}>
+        <Grid item sm />
+        <Grid item sm>
           <form onSubmit={this.handleSubmit}>
-            <h1>
+            <Typography variant="h2">
               Login to <Link to="/">ChatRoom</Link>
-            </h1>
-            <p>Fill in the form below to login to your account.</p>
-            <div>
-              <input
-                placeholder="Email"
-                name="email"
-                type="email"
-                onChange={this.handleChange}
-                value={this.state.email}
-              ></input>
-            </div>
-            <div>
-              <input
-                placeholder="Password"
-                name="password"
-                onChange={this.handleChange}
-                value={this.state.password}
-                type="password"
-              ></input>
-            </div>
-            <div>
-              {this.state.error ? <p>{this.state.error}</p> : null}
-              <button type="submit">Login</button>
-            </div>
-            <hr></hr>
-            <p>
+            </Typography>
+            <Typography variant="body2">
+              Fill in the form below to login to your account.
+            </Typography>
+
+            <TextField
+              id="email"
+              name="email"
+              type="email"
+              label="Email"
+              className={classes.textField}
+              //helperText={errors.email}
+              //error={errors.email ? true : false}
+              value={this.state.email}
+              onChange={this.handleChange}
+              variant="outlined"
+              fullWidth
+            />
+
+            <TextField
+              id="password"
+              name="password"
+              type="password"
+              label="Password"
+              className={classes.textField}
+              //helperText={errors.password}
+              //error={errors.password ? true : false}
+              value={this.state.password}
+              onChange={this.handleChange}
+              variant="outlined"
+              fullWidth
+            />
+
+            {this.state.error ? <p>{this.state.error}</p> : null}
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              className={classes.button}
+            >
+              Login
+            </Button>
+            <br />
+            <small>
               Don't have an account? <Link to="/signup">Signup</Link>
-            </p>
+            </small>
           </form>
-        </Paper>
+        </Grid>
+        <Grid item sm />
       </Grid>
     );
   }
 }
 
-export default SignUp;
+export default withStyles(styles)(Login);
