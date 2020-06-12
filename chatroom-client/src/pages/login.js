@@ -51,10 +51,10 @@ class Login extends Component {
         <Grid item sm />
         <Grid item sm>
           <form onSubmit={this.handleSubmit}>
-            <Typography variant="h2">
+            <Typography variant="h2" className={classes.pageTitle}>
               Login to <Link to="/">ChatRoom</Link>
             </Typography>
-            <Typography variant="body2">
+            <Typography variant="body2" className={classes.pageDesc}>
               Fill in the form below to login to your account.
             </Typography>
 

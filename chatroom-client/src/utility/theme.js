@@ -20,5 +20,9 @@ export default {
     form: {
       textAlign: "center",
     },
+    pageTitle: {},
+    pageDesc: {},
+    button: {},
+    textField: {},
   },
 };
